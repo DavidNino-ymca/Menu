@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YMCA Pool Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1, h2 {
+            color: #0066cc;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #0066cc;
+            color: white;
+            text-align: center;
+        }
+        td:first-child {
+            text-align: left;
+        }
+        td:nth-child(2) {
+            text-align: center;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        td:last-child {
+            text-align: right;
+            direction: rtl;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .menu-section {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        @media (max-width: 600px) {
+            table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+<img src="data:image/png;base64,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" alt="Embedded Image" />
+
+
+
+
+
+
+
+
+
+    <h1>YMCA Pool Menu</h1>
+    
+    <!-- Cold Appetizers -->
+    <div class="menu-section">
+        <table>
+            <thead>
+                <tr>
+                    <th>Cold Appetizers</th>
+                    <th>Price</th>
+                    <th>مقبلات باردة</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Tabouleh</td><td>1.50</td><td class="arabic">تبولة 250 غم</td></tr>
+                <tr><td>Tabouleh Quinoa</td><td>1.80</td><td class="arabic">تبولة كينوا 250 غم</td></tr>
+                <tr><td>Greek Salad</td><td>1.50</td><td class="arabic">سلطة يونانية</td></tr>
+                <tr><td>Fatoush</td><td>1.50</td><td class="arabic">فتوش</td></tr>
+                <tr><td>Caesar Salad</td><td>2.00</td><td class="arabic">سلطة سيزر</td></tr>
+                <tr><td>Hummus 150 gm</td><td>1.25</td><td class="arabic">حمص 150 غم</td></tr>
+                <tr><td>Mutabbal 150 gm</td><td>1.25</td><td class="arabic">متبل 150 غم</td></tr>
+                <tr><td>Labaneh Dipp</td><td>1.30</td><td class="arabic">تغميسة لبنة 150 غم</td></tr>
+                <tr><td>Yalanji</td><td>1.30</td><td class="arabic">يلنجي 7 حبات</td></tr>
+                <tr><td>Veggies</td><td>0.80</td><td class="arabic">خضار مقطعة</td></tr>
+            </tbody>
+
+    <!-- Pasta -->
+            <thead>
+                <tr>
+                    <th>Pasta</th>
+                    <th>Price</th>
+                    <th>باستا</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Alfredo</td><td>2.30</td><td class="arabic">الفريدو</td></tr>
+                <tr><td>Arrabbiatta</td><td>2.30</td><td class="arabic">ارابياتا</td></tr>
+                <tr><td>Bolognese</td><td>2.30</td><td class="arabic">بولونيز</td></tr>
+                <tr><td>Mac & Cheese</td><td>2.30</td><td class="arabic">ماك اند شيز</td></tr>
+            </tbody>
+
+    <!-- Pizza -->
+            <thead>
+                <tr>
+                    <th>Pizza</th>
+                    <th>Price</th>
+                    <th>بيتزا</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Pepperoni</td><td>2.00</td><td class="arabic">بيبيروني</td></tr>
+                <tr><td>Margerita</td><td>1.60</td><td class="arabic">مارغاريتا</td></tr>
+                <tr><td>Veggies</td><td>1.75</td><td class="arabic">خضار</td></tr>
+                <tr><td>YMCA Pizza</td><td>2.50</td><td class="arabic">بيتزا النادي</td></tr>
+                <tr><td>Crispy Chicken & Cheddar</td><td>2.60</td><td class="arabic">زنجر مع شيدر</td></tr>
+                <tr><td>Alfredo Pizza</td><td>2.60</td><td class="arabic">الفريدو بيتزا</td></tr>
+            </tbody>
+
+    <!-- Manqeesh -->
+            <thead>
+                <tr>
+                    <th>Manqeesh</th>
+                    <th>Price</th>
+                    <th>مناقيش</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>White Cheese</td><td>1.75</td><td class="arabic">جبنة بيضاء</td></tr>
+                <tr><td>Zaatar with Olive oil</td><td>1.00</td><td class="arabic">زعتر بزيت الزيتون البلدي</td></tr>
+                <tr><td>Turkey and Cheese</td><td>2.00</td><td class="arabic">تيركي و جبنة</td></tr>
+                <tr><td>Zaatar and cheese</td><td>1.50</td><td class="arabic">زعتر و جبنة</td></tr>
+                <tr><td>Nutella with Hazelnut</td><td>1.50</td><td class="arabic">منقوشة نوتيلا بالبندق</td></tr>
+                <tr><td>Make it a wrap</td><td>0.40</td><td class="arabic">اعملها لفة</td></tr>
+            </tbody>
+
+    <!-- Kids Meal -->
+            <thead>
+                <tr>
+                    <th>Kids Meal</th>
+                    <th>Price</th>
+                    <th>وجبة أطفال</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Beef Burger</td><td>2.50</td><td class="arabic">بيف برغر مع بطاطا</td></tr>
+                <tr><td>chicken burger</td><td>2.50</td><td class="arabic">تشكن برغر</td></tr>
+                <tr><td>hot dog</td><td>2.50</td><td class="arabic">هوت دوغ</td></tr>
+                <tr><td>Chicken Nuggets Kids</td><td>2.50</td><td class="arabic">ناجيت الدجاج أطفال</td></tr>
+            </tbody>
+
+    <!-- Healthy Corner -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Healthy Corner</th>
+                    <th>Price</th>
+                    <th>الركن الصحي</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Grilled chicken breast</td><td>3.25</td><td class="arabic">صدر دجاج مشوي مع خضار</td></tr>
+                <tr><td>Tuna Salad</td><td>3.25</td><td class="arabic">سلطة التونا</td></tr>
+                <tr><td>Breadless Burger</td><td>3.25</td><td class="arabic">برغر بدون خبز</td></tr>
+                <tr><td>Breadless Chicken Sandwich</td><td>3.25</td><td class="arabic">ساندويش دجاج بدون خبز</td></tr>
+            </tbody>
+
+    <!-- Snacks -->
+            <thead>
+                <tr>
+                    <th>Snacks</th>
+                    <th>Price</th>
+                    <th>تسالي و سناكات</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Chips Small</td><td>0.50</td><td class="arabic">شيبس صغير</td></tr>
+                <tr><td>Chips Meduim</td><td>0.75</td><td class="arabic">شيبس وسط</td></tr>
+                <tr><td>Chips Large</td><td>1.50</td><td class="arabic">شيبس كبير</td></tr>
+                <tr><td>Mixed nuts</td><td>1.50</td><td class="arabic">مكسرات</td></tr>
+                <tr><td>Peanuts</td><td>0.50</td><td class="arabic">فستق</td></tr>
+                <tr><td>Popcorn</td><td>1.00</td><td class="arabic">بوشار</td></tr>
+                <tr><td>Lolipop</td><td>0.25</td><td class="arabic">مصاص</td></tr>
+                <tr><td>Icecream small</td><td>0.25</td><td class="arabic">بوظة صغير</td></tr>
+                <tr><td>Icecream Meduim</td><td>0.50</td><td class="arabic">بوظة وسط</td></tr>
+                <tr><td>Icecream Large</td><td>0.75</td><td class="arabic">بوظة كبير</td></tr>
+                <tr><td>Cake</td><td>0.25</td><td class="arabic">كيك</td></tr>
+                <tr><td>Choclate Small</td><td>0.25</td><td class="arabic">شوكولاتة صغير</td></tr>
+                <tr><td>Choclate Large</td><td>0.50</td><td class="arabic">شوكولاتة كبير</td></tr>
+                <tr><td>Cadbury Bubly</td><td>0.50</td><td class="arabic">شوكولاتة كادبري</td></tr>
+                <tr><td>KitKat</td><td>0.75</td><td class="arabic">شوكولاته كتكات</td></tr>
+            </tbody>
+
+    <!-- Hot Appetizers -->
+            <thead>
+                <tr>
+                    <th>Hot Appetizers</th>
+                    <th>Price</th>
+                    <th>مقبلات ساخنة</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Fried kubbeh</td><td>2.00</td><td class="arabic">كبة مقلية 5 حبات</td></tr>
+                <tr><td>Cheese Samosa</td><td>2.00</td><td class="arabic">سمبوسة جبنة 4 حبات</td></tr>
+                <tr><td>Spring Rolls</td><td>2.00</td><td class="arabic">سبرينغ رول خضار 4 حبات</td></tr>
+                <tr><td>Chicken Nuggets</td><td>2.50</td><td class="arabic">ناجيت الدجاج مع بطاطا</td></tr>
+                <tr><td>Popcorn Chicken</td><td>1.80</td><td class="arabic">بوب كورن دجاج</td></tr>
+                <tr><td>French Fries</td><td>1.20</td><td class="arabic">بطاطا مقلية</td></tr>
+                <tr><td>Potato wedges</td><td>1.60</td><td class="arabic">بطاطا ودجز</td></tr>
+                <tr><td>Chicken Dynimite</td><td>2.50</td><td class="arabic">دجاج دينامايت</td></tr>
+                <tr><td>Add Hot Cheese</td><td>0.40</td><td class="arabic">زيادة صوص الجبنة</td></tr>
+            </tbody>
+
+    <!-- Sandwiches -->
+            <thead>
+                <tr>
+                    <th>Sandwiches</th>
+                    <th>Price</th>
+                    <th>الساندويشات</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Halloumi</td><td>2.00</td><td class="arabic">حلوم مشوي</td></tr>
+                <tr><td>Turkey & Cheese</td><td>1.80</td><td class="arabic">تيركي و جبنة</td></tr>
+                <tr><td>Kashkaval</td><td>1.60</td><td class="arabic">كشكوان</td></tr>
+                <tr><td>Kashkaval & Zaatar</td><td>1.80</td><td class="arabic">كشكوان وزعتر</td></tr>
+                <tr><td>Chicken Fajita</td><td>2.00</td><td class="arabic">دجاج فاهيتا</td></tr>
+                <tr><td>Chicken Shawerma</td><td>1.50</td><td class="arabic">شاورما الدجاج</td></tr>
+                <tr><td>Crispy Chicken (Hot, Mild)</td><td>2.25</td><td class="arabic">زنجر (عادي او حار) مع جبنة</td></tr>
+                <tr><td>Chicken Royal</td><td>3.25</td><td class="arabic">دجاج رويال مع جبنة</td></tr>
+                <tr><td>Hotdog</td><td>1.75</td><td class="arabic">هوت دوغ مع جبنة</td></tr>
+                <tr><td>Beef Burger</td><td>2.20</td><td class="arabic">بيف برغر مع جبنة</td></tr>
+                <tr><td>Mushroom&Cheese Burger</td><td>2.80</td><td class="arabic">بيف برغر ماشروم</td></tr>
+                <tr><td>Angus Beef Burger</td><td>3.25</td><td class="arabic">انجوس بيف برجر مع جبنة</td></tr>
+                <tr><td>Angus B.B. Mushroom&Cheese</td><td>3.90</td><td class="arabic">ماشروم انجوس</td></tr>
+            </tbody>
+
+    <!-- Quasadillas -->
+            <thead>
+                <tr>
+                    <th>Quasadillas</th>
+                    <th>Price</th>
+                    <th>كاساديلا</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Chicken Sweet & Spicy</td><td>3.25</td><td class="arabic">دجاج حار وحلو مع جبنة</td></tr>
+                <tr><td>Philly Steak Sandwich</td><td>3.25</td><td class="arabic">ستيك فلادلفيا مع جبنة</td></tr>
+                <tr><td>Make it a meal</td><td>1.50</td><td class="arabic">اعملها وجبة</td></tr>
+            </tbody>
+
+    <!-- Extras -->
+            <thead>
+                <tr>
+                    <th>Extras</th>
+                    <th>Price</th>
+                    <th>زيادة</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Extra Cheese</td><td>0.30</td><td class="arabic">زيادة جبنة</td></tr>
+                <tr><td>Extra Cold Cuts</td><td>0.30</td><td class="arabic">زيادة تيركي</td></tr>
+                <tr><td>Extra Chicken</td><td>0.75</td><td class="arabic">زيادة دجاج</td></tr>
+                <tr><td>Extra Meat</td><td>1.00</td><td class="arabic">زيادة لحمة</td></tr>
+            </tbody>
+
+    <!-- Cold Drinks -->
+            <thead>
+                <tr>
+                    <th>Cold Drinks</th>
+                    <th>Price</th>
+                    <th>مشروبات باردة</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Soft Drinks (Pepsi, Kinza)</td><td>0.65</td><td class="arabic">مشروبات غازية</td></tr>
+                <tr><td>Grenadine with 7up</td><td>0.85</td><td class="arabic">جراندين مع سفن اب</td></tr>
+                <tr><td>Ice Tea lipton</td><td>0.90</td><td class="arabic">شاي مثلج ليبتون</td></tr>
+                <tr><td>Ice Tea Hamudeh</td><td>0.60</td><td class="arabic">شاي مثلج محلي</td></tr>
+                <tr><td>Juices</td><td>0.60</td><td class="arabic">عصير</td></tr>
+                <tr><td>Water 1.5 L</td><td>0.70</td><td class="arabic">ماء كبير 1.5L</td></tr>
+                <tr><td>Water 600 ml</td><td>0.40</td><td class="arabic">ماء وسط 600ml</td></tr>
+                <tr><td>Water 500 ml</td><td>0.30</td><td class="arabic">ماء صغير 500ml</td></tr>
+                <tr><td>red bull</td><td>2.00</td><td class="arabic">ريد بل</td></tr>
+                <tr><td>Vita</td><td>1.00</td><td class="arabic">فيتا كسرات</td></tr>
+                <tr><td>Slush</td><td>1.00</td><td class="arabic">سلاش</td></tr>
+                <tr><td>Mr. Brown Ice Coffee</td><td>1.50</td><td class="arabic">مستر براون</td></tr>
+            </tbody>
+
+    <!-- Hot Drinks -->
+            <thead>
+                <tr>
+                    <th>Hot Drinks</th>
+                    <th>Price</th>
+                    <th>مشروبات ساخنة</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Turkish Coffee</td><td>0.80</td><td class="arabic">قهوة تركي</td></tr>
+                <tr><td>3 in 1 or 2 in 1</td><td>0.75</td><td class="arabic">نسكافية (3 في 1) أو(2 في 1)</td></tr>
+                <tr><td>Nescafe Black</td><td>0.75</td><td class="arabic">نسكافية بلاك</td></tr>
+                <tr><td>American</td><td>1.25</td><td class="arabic">قهوة اميركان</td></tr>
+                <tr><td>Espresso</td><td>1.10</td><td class="arabic">اسبريسو</td></tr>
+                <tr><td>Cappuccino</td><td>1.30</td><td class="arabic">كابتشينو</td></tr>
+                <tr><td>Tea & Herbs</td><td>0.50</td><td class="arabic">شاي و اعشاب</td></tr>
+            </tbody>
+
+    <!-- Alcohol Drinks -->
+            <thead>
+                <tr>
+                    <th>Alcohol Drinks</th>
+                    <th>Price</th>
+                    <th>المشروبات</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Amstel Cans 330</td><td>3.50</td><td class="arabic">بيرة امستل 330 مل</td></tr>
+                <tr><td>Amstel Offer 5</td><td>15.00</td><td class="arabic">بيرة عرض امستل 5 علب</td></tr>
+                <tr><td>Carakale Beer</td><td>3.50</td><td class="arabic">بيرة كراكيل درافت 400 مل</td></tr>
+                <tr><td>Petra Gluten Free 330</td><td>3.50</td><td class="arabic">بيرة بترا بدون جلوتين</td></tr>
+                <tr><td>Petra Blonde Ale 330</td><td>3.50</td><td class="arabic">بيرة بترا بلوند ايل</td></tr>
+                <tr><td>Heinken 330</td><td>4.50</td><td class="arabic">بيرة هاينكين</td></tr>
+                <tr><td>Heinken Offer 5</td><td>15.00</td><td class="arabic">بيرة هاينكين عرض 5 علب</td></tr>
+                <tr><td>Budwiser</td><td>4.50</td><td class="arabic">بيرة بادوايزر</td></tr>
+                <tr><td>Budwiser Offer 5</td><td>20.00</td><td class="arabic">بيرة بادوايزر عرض 5 علب</td></tr>
+                <tr><td>Black Label 375 CC</td><td>36.00</td><td class="arabic">ويسكي بلاك ليبل 375</td></tr>
+                <tr><td>J&B 750 CC</td><td>30.00</td><td class="arabic">ويسكي جي اند بي 750</td></tr>
+                <tr><td>J&B 375 CC</td><td>16.00</td><td class="arabic">ويسكي جي اند بي 375</td></tr>
+                <tr><td>Smirnoff red 200 CC</td><td>10.00</td><td class="arabic">فودكا سميرنوف 200</td></tr>
+                <tr><td>Gordons Dry Gin 75</td><td>42.00</td><td class="arabic">تيكيلا جوردونز 750</td></tr>
+                <tr><td>Rum Haddad 750</td><td>18.00</td><td class="arabic">رم حداد 750</td></tr>
+                <tr><td>Rum Haddad 375</td><td>12.00</td><td class="arabic">رم حداد 375</td></tr>
+                <tr><td>JR Wine Red</td><td>16.00</td><td class="arabic">نبيذ احمر JR</td></tr>
+                <tr><td>JR Wine White</td><td>16.00</td><td class="arabic">نبيذ ابيض JR</td></tr>
+                <tr><td>JR Wine Rose</td><td>16.00</td><td class="arabic">نبيذ روزي JR</td></tr>
+                <tr><td>JR Sparklinkg Rose</td><td>20.00</td><td class="arabic">نبيذ فوار JR Rose</td></tr>
+                <tr><td>JR Sparklinkg Brut</td><td>20.00</td><td class="arabic">نبيذ فوار JR Brut</td></tr>
+                <tr><td>Arak Haddad Crystal 750 ML</td><td>20.00</td><td class="arabic">عرق كريستال 750 مل</td></tr>
+                <tr><td>Arak Haddad Crystal 187.5 ML</td><td>8.00</td><td class="arabic">عرق كريستال 187.5 مل</td></tr>
+                <tr><td>Arak Haddad Gold 750 ML</td><td>19.00</td><td class="arabic">عرق حداد الذهبي 750 مل</td></tr>
+                <tr><td>Arak Haddad Gold 375 ML</td><td>12.00</td><td class="arabic">عرق حداد الذهبي 375 مل</td></tr>
+                <tr><td>Arak Haddad Gold 187.5 ML</td><td>7.00</td><td class="arabic">عرق حداد الذهبي 187.5 مل</td></tr>
+            </tbody>
+
+    <!-- Argeeleh -->
+            <thead>
+                <tr>
+                    <th>Argeeleh</th>
+                    <th>Price</th>
+                    <th>ارجيلة</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>2 Apples Mazaya</td><td>5.00</td><td class="arabic">تفاحتين مزايا</td></tr>
+                <tr><td>2 Apples Nakhleh</td><td>6.00</td><td class="arabic">تفاحتين نخله</td></tr>
+                <tr><td>2 Apples Fakher</td><td>6.00</td><td class="arabic">تفاحتين فاخر</td></tr>
+                <tr><td>Lemon mint</td><td>5.00</td><td class="arabic">ليمون ونعنع</td></tr>
+                <tr><td>Gum and cinamon</td><td>5.00</td><td class="arabic">علكة وقرفه</td></tr>
+                <tr><td>Watermelon and mint</td><td>5.00</td><td class="arabic">بطيخ ونعنع</td></tr>
+                <tr><td>Candy</td><td>5.00</td><td class="arabic">كاندي</td></tr>
+                <tr><td>Love</td><td>5.00</td><td class="arabic">Love</td></tr>
+                <tr><td>Bluemist</td><td>5.00</td><td class="arabic">بلو ميست</td></tr>
+                <tr><td>Grapes</td><td>5.00</td><td class="arabic">عنب</td></tr>
+                <tr><td>Grapes and mint</td><td>5.00</td><td class="arabic">عنب ونعنع</td></tr>
+                <tr><td>Grapes and berries</td><td>5.00</td><td class="arabic">عنب وتوت</td></tr>
+                <tr><td>Gum and mint</td><td>5.00</td><td class="arabic">علكه ونعنع</td></tr>
+                <tr><td>Zaghlool</td><td>5.00</td><td class="arabic">زغلول</td></tr>
+                <tr><td>Disposable Argeeleh</td><td>8.50</td><td class="arabic">أرجيلة صحي</td></tr>
+            </tbody>
+
+    <!-- Ice -->
+            <thead>
+                <tr>
+                    <th>Ice</th>
+                    <th>Price</th>
+                    <th>ثلج</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Ice</td><td>0.50</td><td class="arabic">كيس ثلج</td></tr>
+                <tr><td>Ice cup</td><td>0.25</td><td class="arabic">كاسة ثلج</td></tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
